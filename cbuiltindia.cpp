@@ -1,5 +1,7 @@
 #include "cbuiltindia.h"
 #include<QGridLayout>
+#include<qtwidgets>
+
 CBuiltinDia::CBuiltinDia(QWidget *parent)
     : QDialog(parent)
 {
@@ -23,10 +25,27 @@ CBuiltinDia::CBuiltinDia(QWidget *parent)
     gridLayout->addWidget(progressPushBtn,2,0,1,1);
     gridLayout->addWidget(printPushBtn,2,1,1,1);
     gridLayout->addWidget(displayTextEdit,3,0,3,3);
-    //將Qpushbutton元件及Qtextedit納入grillayout管理
+
     setLayout(gridLayout);
-    setWindowTitle(tr("內建對話展示盒"));
-        resize(400,300);
+    setWindowTitle(tr("內建對話盒"));
+    resize(400,300);
+    connect(colorPushBtn,SIGNAL(clicked()),this,SLOT(doPUshBtn()));
 }
 
 CBuiltinDia::~CBuiltinDia() {}
+
+void CBuiltinDia:: doPushBtn()
+{
+    QPushButton* btn = qobject_cast<QPushButton*>(sender());
+    if(btn == colorPushBtn)
+    {
+        QPalette Palette=displayTextEdit->palette();
+        const QColor& color =
+            QColorDialog::getColor(Palette.color(QPalette::Base),this,tr("設定背景調色盤"));
+        if(color.isValid())
+        {
+            Palette.setColor(QPalette::Base,color);
+            displayTextEdit->setPalette(palette);
+        }
+        }
+}
