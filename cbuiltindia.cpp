@@ -1,11 +1,10 @@
 #include "cbuiltindia.h"
 #include<QGridLayout>
-
 CBuiltinDia::CBuiltinDia(QWidget *parent)
     : QDialog(parent)
 {
     QGridLayout *gridLayout =  new QGridLayout;
-    displayTextEdit = new QPushButton(QStringLiteral("Qt的標準通用對話盒"));
+    displayTextEdit = new QTextEdit(QStringLiteral("Qt的標準通用對話盒"));
     colorPushBtn = new QPushButton(QStringLiteral("顏色對話盒"));
     errorPushBtn = new QPushButton(QStringLiteral("錯誤訊息盒"));
     filePushBtn = new QPushButton(QStringLiteral("檔案對話盒"));
@@ -15,7 +14,19 @@ CBuiltinDia::CBuiltinDia(QWidget *parent)
     progressPushBtn = new QPushButton(QStringLiteral("進度對話盒"));
     printPushBtn = new QPushButton(QStringLiteral("列印對話盒"));
 
-
+    gridLayout->addWidget(colorPushBtn,0,0,1,1);
+    gridLayout->addWidget(errorPushBtn,0,1,1,1);
+    gridLayout->addWidget(filePushBtn,0,2,1,1);
+    gridLayout->addWidget(fontPushBtn,1,0,1,1);
+    gridLayout->addWidget(inputPushBtn,1,1,1,1);
+    gridLayout->addWidget(pagePushBtn,1,2,1,1);
+    gridLayout->addWidget(progressPushBtn,2,0,1,1);
+    gridLayout->addWidget(printPushBtn,2,1,1,1);
+    gridLayout->addWidget(displayTextEdit,3,0,3,3);
+    //將Qpushbutton元件及Qtextedit納入grillayout管理
+    setLayout(gridLayout);
+    setWindowTitle(tr("內建對話展示盒"));
+        resize(400,300);
 }
 
 CBuiltinDia::~CBuiltinDia() {}
