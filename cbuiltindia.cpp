@@ -30,6 +30,8 @@ CBuiltinDia::CBuiltinDia(QWidget *parent)
     setWindowTitle(tr("內建對話盒"));
     resize(400,300);
     connect(colorPushBtn,SIGNAL(clicked()),this,SLOT(doPUshBtn()));
+    connect(errorPushBtn,SIGNAL(clicked()),this,SLOT(doPUshBtn()));
+    connect(filePushBtn,SIGNAL(clicked()),this,SLOT(doPUshBtn()));
 }
 
 CBuiltinDia::~CBuiltinDia() {}
@@ -47,5 +49,11 @@ void CBuiltinDia:: doPushBtn()
             Palette.setColor(QPalette::Base,color);
             displayTextEdit->setPalette(palette);
         }
-        }
+        if(btn == filePushBtn)
+        {QString fileName = QFileDialog::getOpenFileName(this,QtPrivate::QStringLiteral("開啟檔案"),("."),QStringLiteral("任何檔案(**)"";;文字檔(*txt)"";;XML檔(*)"));
+            displayTextEdit->setText(fileName);
+
+    }
+
+}
 }

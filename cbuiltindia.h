@@ -24,6 +24,6 @@ private:
     QPushButton *progressPushBtn;
     QPushButton *printPushBtn;
 private slots:
-    //void doPushBtn
+    void doPushBtn();
 };
 #endif // CBUILTINDIA_H
